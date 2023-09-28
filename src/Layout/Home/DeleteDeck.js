@@ -1,7 +1,8 @@
 import React from "react";
 
-function DeleteButton() {
+
+function DeleteDeck() {
     console.log("delete button pressed")
 }
 
-export default DeleteButton
+export default DeleteDeck

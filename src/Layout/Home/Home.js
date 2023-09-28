@@ -1,14 +1,26 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "./Home.css"
-import CreateDeckButton from "./CreateDeckButton";
-import DeckCard from "./DeckCard";
+import DeckList from "./DeckList";
 
 function Home() {
-    {/* these components have no functionality, just structure, as of 7:30pm 9/25/23 */}
+    const [decks, setDecks] = useState([])
+
+    useEffect(() => {
+        async function loadDecks() {
+            const response = await fetch(
+                "http://localhost:8080/decks"
+            )
+            const decksFromAPI = await response.json()
+            console.log(decksFromAPI)
+            setDecks(decksFromAPI)
+        }
+        loadDecks()
+    }, [])
     return (
     <>
-    <CreateDeckButton /> 
-    <DeckCard />
+    <a href="/decks/new"><button>+ Create Deck</button></a>
+    <DeckList decks={decks}/>
     </>
     )
 }
