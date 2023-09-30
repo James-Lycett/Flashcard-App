@@ -1,21 +1,26 @@
-import React, { useState } from "react";
-import Breadcrumb from "./Breadcrumb"
+import React, { useState, useEffect } from "react";
 import { readDeck } from "../../utils/api";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import Breadcrumb from "./Breadcrumb"
+import CardView from "./CardView";
 
 function Study() {
     const params = useParams()
     const deckId = params.deckId
-    const [deckName, setDeckName] = useState("")
+    const [deck, setDeck] = useState({})
     
-    async function loadDeck() {
-        const response = await readDeck(deckId)
-        setDeckName(response.name)
-    }
-    loadDeck()
+    useEffect(() => {
+        async function loadDeck() {
+            const APIresponse = await readDeck(deckId)
+            setDeck(APIresponse)
+        }
+        loadDeck()
+    }, [])
     return (
         <>
-        <Breadcrumb deckName={deckName}/>
+        <Breadcrumb deckName={deck.name}/>
+        <h2>{`Study: ${deck.name}`}</h2>
+        <CardView deck={deck} />
         </>
     )
 }
