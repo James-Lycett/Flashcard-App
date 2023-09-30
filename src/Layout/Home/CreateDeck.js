@@ -26,7 +26,7 @@ function CreateDeck() {
             const deckID = postedDeck.id            
             setName("")
             setDescription("")
-            history.push(`/decks/${deckID}/study`)
+            history.push(`/decks/${deckID}`)
         }
         postDeck()
         console.log("handleSubmit just might work now")

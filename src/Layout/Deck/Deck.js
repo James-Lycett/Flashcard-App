@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Breadcrumb from "./Breadcrumb";
+import { useParams } from "react-router-dom"
 import { readDeck } from "../../utils/api";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import Breadcrumb from "./Breadcrumb"
-import CardView from "./CardView";
 
-function Study() {
+function Deck() {
     const params = useParams()
     const deckId = params.deckId
     const [deck, setDeck] = useState(null)
-    
+
     useEffect(() => {
         async function loadDeck() {
             try {
@@ -22,17 +21,16 @@ function Study() {
         }
         loadDeck()
     }, [deckId])
+
     if (deck === null) {
         return <p>Loading...</p>
     } else {
         return (
             <>
             <Breadcrumb deckName={deck.name} deckId={deckId}/>
-            <h2>{`${deck.name}: Study`}</h2>
-            <CardView deck={deck} deckId={deckId}/>
             </>
         )
     }
 }
 
-export default Study
+export default Deck

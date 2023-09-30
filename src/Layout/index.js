@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom"
 import Header from "./Header";
 import Home from "./Home/Home"
 import View from "./View/View"
+import Deck from "./Deck/Deck";
 import Study from "./Study/Study"
 import CreateDeck from "./Home/CreateDeck";
 import NotFound from "./NotFound";
@@ -19,13 +20,16 @@ function Layout() {
           </Route>
           <Route path="/view">
             <View />
-          </Route>
+          </Route>          
           <Route path="/decks/:deckId/study">
             <Study/>
           </Route>
-          <Route path="/decks/new" >
+          <Route exact path="/decks/new" >
             <CreateDeck />
-          </Route>        
+          </Route>     
+          <Route path="/decks/:deckId" >
+            <Deck />
+          </Route>   
           <Route>
             <NotFound />
           </Route>
