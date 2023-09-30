@@ -28,8 +28,8 @@ function Study() {
         return (
             <>
             <Breadcrumb deckName={deck.name}/>
-            <h2>{`Study: ${deck.name}`}</h2>
-            <CardView deck={deck}/>
+            <h2>{`${deck.name}: Study`}</h2>
+            <CardView deck={deck} deckId={deckId}/>
             </>
         )
     }

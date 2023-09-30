@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { readCard } from "../../utils/api";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 
-function CardView( { deck } ) {
+function CardView( { deck, deckId } ) {
     const [card, setCard] = useState(deck.cards[0])
     const [cardNumber, setCardNumber] = useState(0)
     const [front, setFront] = useState(true)
     const history = useHistory()
+    const deckLength = deck.cards.length
 
     useEffect(() => {
-        if (cardNumber !== deck.cards.length) {
+        if (cardNumber !== deckLength) {
         async function loadCard() {
             const response = await readCard(deck.cards[cardNumber].id)
             setCard(response)
@@ -29,7 +30,7 @@ function CardView( { deck } ) {
     const nextButtonHandler = () => {
         setCardNumber(cardNumber + 1)
         setFront(true)
-        if (cardNumber + 1 >= deck.cards.length) {
+        if (cardNumber + 1 >= deckLength) {
             const confirm = window.confirm("Restart cards? Click 'cancel' to return to the home page.")
             if (confirm) {
                 setCardNumber(0)
@@ -40,19 +41,32 @@ function CardView( { deck } ) {
     }
 
     
-
-    return (
-        <>
-        <div className="card" style={{width: "18rem"}}>
-            <div className="card-body">
-            <h5 className="card-title">{`Card ${cardNumber + 1} of ${deck.cards.length}`}</h5>
-            <p className="card-text">{front ? card.front : card.back}</p>
-            <a className="card-link"><button onClick={flipButtonHandler}>Flip</button></a>
-            {front === false ? <a className="card-link"><button onClick={nextButtonHandler}>Next</button></a> : null}
+    if (deckLength >= 3) {
+        return (
+            <>
+            <div className="card" style={{width: "18rem"}}>
+                <div className="card-body">
+                <h5 className="card-title">{`Card ${cardNumber + 1} of ${deckLength}`}</h5>
+                <p className="card-text">{front ? card.front : card.back}</p>
+                <a className="card-link"><button onClick={flipButtonHandler}>Flip</button></a>
+                {front === false ? <a className="card-link"><button onClick={nextButtonHandler}>Next</button></a> : null}
+                </div>
             </div>
-        </div>
-        </>
-    )
+            </>
+        )
+    } else {
+        return (
+            <>
+            <div className="card" style={{width: "18rem"}}>
+                <div className="card-body">
+                <h5 className="card-title">Not Enough Cards</h5>
+                <p className="card-text">{`You need at least 3 cards to study. There are ${deckLength} cards in this deck.`}</p>
+                <Link to={`/decks/${deckId}/cards/new`}><button type="button">+ Add Cards</button></Link>
+                </div>
+            </div>
+            </>
+        )
+    }
 }
 
 export default CardView
