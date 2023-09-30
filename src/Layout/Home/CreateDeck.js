@@ -9,12 +9,10 @@ function CreateDeck() {
 
     const handleNameChange = (event) => {
         setName(event.target.value)
-        console.log(name)
     }
 
     const handleDescriptionChange = (event) => {
-        setDescription(event.target.value)
-        console.log(description)
+        setDescription(event.target.value)        
     }
 
     const handleSubmit = (event) => {
