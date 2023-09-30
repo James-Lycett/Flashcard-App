@@ -20,12 +20,12 @@ function Layout() {
           <Route path="/view">
             <View />
           </Route>
-          <Route path="/study">
+          <Route path="/decks/:deckId/study">
             <Study/>
           </Route>
           <Route path="/decks/new" >
             <CreateDeck />
-          </Route>
+          </Route>        
           <Route>
             <NotFound />
           </Route>

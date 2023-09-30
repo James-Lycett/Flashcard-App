@@ -2,18 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./Home.css"
 import DeckList from "./DeckList";
+import { listDecks } from "../../utils/api";
 
 function Home() {
     const [decks, setDecks] = useState([])
 
     useEffect(() => {
         async function loadDecks() {
-            const response = await fetch(
-                "http://localhost:8080/decks"
-            )
-            const decksFromAPI = await response.json()
-            console.log(decksFromAPI)
-            setDecks(decksFromAPI)
+            const APIresponse = await listDecks()
+            setDecks(APIresponse)
         }
         loadDecks()
     }, [])

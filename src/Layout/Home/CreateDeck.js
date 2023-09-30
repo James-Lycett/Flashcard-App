@@ -1,34 +1,37 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom"
+import { createDeck } from "../../utils/api";
 
 function CreateDeck() {
     const history = useHistory()
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
 
-    const handleNameChange = (event) => setName(event.target.value)
+    const handleNameChange = (event) => {
+        setName(event.target.value)
+        console.log(name)
+    }
 
-    const handleDescriptionChange = (event) => setDescription(event.target.value)
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value)
+        console.log(description)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         const newDeck = {
-            name: {name},
-            description: {description}
+            name: name,
+            description: description
         }
         async function postDeck() {
-            const response = await fetch(
-                "http://localhost:8080/decks",
-                {
-                    method: "POST",
-                    body: {newDeck}
-                }               
-                )
+            const postedDeck = await createDeck(newDeck)
+            const deckID = postedDeck.id            
+            setName("")
+            setDescription("")
+            history.push(`/decks/${deckID}/study`)
         }
-        history.push("/decks/:deckId/study")
-        setName("")
-        setDescription("")
-        console.log("handleSubmit function needs proper path")
+        postDeck()
+        console.log("handleSubmit just might work now")
     }
     function handleCancel(event) {
         event.preventDefault()
