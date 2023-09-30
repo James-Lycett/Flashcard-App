@@ -7,6 +7,7 @@ function Deck() {
     const params = useParams()
     const deckId = params.deckId
     const [deck, setDeck] = useState(null)
+    //needs some stuff still
 
     useEffect(() => {
         async function loadDeck() {
