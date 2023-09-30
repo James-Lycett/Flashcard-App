@@ -13,14 +13,16 @@ function Study() {
         async function loadDeck() {
             const APIresponse = await readDeck(deckId)
             setDeck(APIresponse)
+            console.log(deck)
         }
         loadDeck()
     }, [])
+    
     return (
         <>
         <Breadcrumb deckName={deck.name}/>
         <h2>{`Study: ${deck.name}`}</h2>
-        <CardView deck={deck} />
+        <CardView deck={deck}/>
         </>
     )
 }
