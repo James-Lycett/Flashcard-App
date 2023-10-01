@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import Breadcrumb from "./Breadcrumb";
 import { useParams } from "react-router-dom"
 import { readDeck } from "../../utils/api";
+import Breadcrumb from "./Breadcrumb";
+import DeckInfoDisplay from "./DeckInfoDisplay"
+import CardList from "./CardList";
 
 function Deck() {
     const params = useParams()
     const deckId = params.deckId
-    const [deck, setDeck] = useState(null)
-    //needs some stuff still
+    const [deck, setDeck] = useState(null)   
+    
 
     useEffect(() => {
         async function loadDeck() {
             try {
                 const APIresponse = await readDeck(deckId)
                 setDeck(APIresponse)
-                console.log(deck)
             } catch (error) {
                 // handle any API errors here
                 console.log(error)
@@ -29,6 +30,8 @@ function Deck() {
         return (
             <>
             <Breadcrumb deckName={deck.name} deckId={deckId}/>
+            <DeckInfoDisplay deck={deck} deckId={deckId}/> 
+            <CardList cards={deck.cards}/>                 
             </>
         )
     }

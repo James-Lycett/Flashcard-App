@@ -2,12 +2,12 @@ import React from "react";
 import DeckView from "./DeckView"
 import { deleteDeck } from "../../utils/api";
 
-function DeckList({decks}) {
+function DeckList( { decks } ) {
     return (
         <>
-        <ul>
+        <ul style={{listStyleType: "none"}}>
             {decks.map((deck, index) => (
-                <DeckView key={index} deck={deck} index={index} deleteDeck={() => deleteDeck(deck.id)} />
+                <DeckView key={index} deck={deck} deleteDeck={() => deleteDeck(deck.id)} />
             ))}
         </ul>
         </>
