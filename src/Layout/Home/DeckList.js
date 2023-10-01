@@ -6,8 +6,10 @@ function DeckList( { decks } ) {
     return (
         <>
         <ul style={{listStyleType: "none"}}>
-            {decks.map((deck, index) => (
-                <DeckView key={index} deck={deck} deleteDeck={() => deleteDeck(deck.id)} />
+            {decks.map((deck) => (
+                <React.Fragment key={deck.id}>
+                <DeckView deck={deck} deleteDeck={() => deleteDeck(deck.id)} />
+                </React.Fragment>
             ))}
         </ul>
         </>

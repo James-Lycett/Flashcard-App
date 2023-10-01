@@ -5,8 +5,12 @@ function CardList( { cards } ) {
     return (
         <>
         <ul style={{listStyleType: "none"}}>
-            {cards.map((card, index) => (
-                <DeckPageCardView card={card} key={index}/> 
+            {cards.map((card) => (
+                <React.Fragment key={card.id}>
+                <li>                
+                    <DeckPageCardView card={card}/> 
+                </li>
+                </React.Fragment>
             ))}
         </ul>
         </>

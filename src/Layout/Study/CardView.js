@@ -7,6 +7,7 @@ function CardView( { deck, deckId } ) {
     const [cardNumber, setCardNumber] = useState(0)
     const [front, setFront] = useState(true)
     const history = useHistory()
+    const deckLengthStr = '' + deck.cards.length
     const deckLength = deck.cards.length
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function CardView( { deck, deckId } ) {
             <>
             <div className="card" style={{width: "18rem"}}>
                 <div className="card-body">
-                <h5 className="card-title">{`Card ${cardNumber + 1} of ${deckLength}`}</h5>
+                <h5 className="card-title">{`Card ${cardNumber + 1} of ${deckLengthStr}`}</h5>
                 <p className="card-text">{front ? card.front : card.back}</p>
                 <a className="card-link"><button onClick={flipButtonHandler}>Flip</button></a>
                 {front === false ? <a className="card-link"><button onClick={nextButtonHandler}>Next</button></a> : null}
@@ -60,7 +61,7 @@ function CardView( { deck, deckId } ) {
             <div className="card" style={{width: "18rem"}}>
                 <div className="card-body">
                 <h5 className="card-title">Not Enough Cards</h5>
-                <p className="card-text">{`You need at least 3 cards to study. There are ${deckLength} cards in this deck.`}</p>
+                <p className="card-text">{`You need at least 3 cards to study. There are ${deckLengthStr} cards in this deck.`}</p>
                 <Link to={`/decks/${deckId}/cards/new`}><button type="button">+ Add Cards</button></Link>
                 </div>
             </div>

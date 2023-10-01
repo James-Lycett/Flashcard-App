@@ -34,7 +34,7 @@ function CardForm( { deckId } ) {
         <>
         <form onSubmit={submitHandler}>
             <div className="mb-3">
-                <label for="formGroupExampleInput" className="form-label">Front</label>
+                <label htmlFor="formGroupExampleInput" className="form-label">Front</label>
                 <textarea 
                     className="form-control"                 
                     id="front" 
@@ -45,7 +45,7 @@ function CardForm( { deckId } ) {
                 />
             </div>
             <div className="mb-3">
-                <label for="formGroupExampleInput2" className="form-label">Back</label>
+                <label htmlFor="formGroupExampleInput2" className="form-label">Back</label>
                 <textarea 
                     className="form-control" 
                     id="back" 

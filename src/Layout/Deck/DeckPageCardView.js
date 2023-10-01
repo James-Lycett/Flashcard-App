@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom"
 import { deleteCard } from "../../utils/api";
 
-function DeckPageCardView( { card, key } ) {
+function DeckPageCardView( { card } ) {
     const params = useParams()
     const deckId = params.deckId
 
@@ -22,8 +22,7 @@ function DeckPageCardView( { card, key } ) {
     }
 
     return (
-        <>
-        <li key={key}>
+        <>        
             <div className="card" style={{width: "18rem"}}>
                 <div className="card-body">
                 <p className="card-text">{card.front}</p>
@@ -31,8 +30,7 @@ function DeckPageCardView( { card, key } ) {
                 <Link to={`/decks/${deckId}/cards/${card.id}/edit`}><button type="button">Edit</button></Link>
                 <button onClick={deleteCardButtonHandler}>Delete</button>
                 </div>
-            </div>
-        </li>
+            </div>        
         </>
     )
 }
