@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { createDeck } from "../../utils/api";
 
 function CreateDeck() {
@@ -31,11 +31,7 @@ function CreateDeck() {
         postDeck()
         console.log("handleSubmit just might work now")
     }
-    function handleCancel(event) {
-        event.preventDefault()
-        history.push("/")
-        console.log("handleCancel function needs built")
-    }
+    
     return (
         <>
         <form name="create" onSubmit={handleSubmit}>
@@ -59,11 +55,10 @@ function CreateDeck() {
                         onChange={handleDescriptionChange}
                         placeholder="Brief description of the deck"
                         required={true}
-                        >
-                        </textarea>
+                        />
                 </div>
                 <div>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <Link to="/"><button>Cancel</button></Link>
                     <button type="submit">Submit</button>                    
                 </div>
         </form>

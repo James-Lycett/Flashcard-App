@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
 import { readDeck } from "../../utils/api";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import Breadcrumb from "../Breadcrumb"
-import CardView from "./CardView";
+import Breadcrumb from "../Breadcrumb";
+import EditForm from "./EditForm";
 
-function Study() {
+function Edit() {
     const params = useParams()
     const deckId = params.deckId
-    const [deck, setDeck] = useState(null)
+    const [deck, setDeck] = useState(null)   
     
+
     useEffect(() => {
         async function loadDeck() {
             try {
@@ -21,18 +22,18 @@ function Study() {
         }
         loadDeck()
     }, [deckId])
-    
+
+
     if (deck === null) {
         return <p>Loading...</p>
     } else {
         return (
             <>
-            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"study"}/>
-            <h2>{`${deck.name}: Study`}</h2>
-            <CardView deck={deck} deckId={deckId}/>
+            <Breadcrumb deckId={deckId} deckName={deck.name} pageId={"edit"}/>
+            <EditForm deckId={deckId} deckName={deck.name} deckDescription={deck.description}/>
             </>
         )
     }
 }
 
-export default Study
+export default Edit

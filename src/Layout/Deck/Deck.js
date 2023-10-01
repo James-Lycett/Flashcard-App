@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { readDeck } from "../../utils/api";
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "../Breadcrumb";
 import DeckInfoDisplay from "./DeckInfoDisplay"
 import CardList from "./CardList";
 
@@ -29,7 +29,7 @@ function Deck() {
     } else {
         return (
             <>
-            <Breadcrumb deckName={deck.name} deckId={deckId}/>
+            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"deck"}/>
             <DeckInfoDisplay deck={deck} deckId={deckId}/> 
             <CardList cards={deck.cards}/>                 
             </>
