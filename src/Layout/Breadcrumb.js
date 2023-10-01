@@ -2,7 +2,7 @@ import React from "react"
 
 function Breadcrumb({ deckName, deckId, pageId }) {
 
-    if (pageId === "deck") {
+    if (pageId === "Deck") {
         return (
             <>
             <nav aria-label="breadcrumb">
@@ -13,43 +13,30 @@ function Breadcrumb({ deckName, deckId, pageId }) {
             </nav>
             </>
         )
-    } else if (pageId === "study") {
+    } else if (pageId === "Create Deck") {
+        return (
+            <>
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/">Home</a></li>                    
+                    <li className="breadcrumb-item active" aria-current="page">{pageId}</li>
+                </ol>
+            </nav>
+            </>
+        )
+    } else {
         return (
             <>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><a href="/">Home</a></li>
                     <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deckName}</a></li>
-                    <li className="breadcrumb-item active" aria-current="page">Study</li>
+                    <li className="breadcrumb-item active" aria-current="page">{pageId}</li>
                 </ol>
             </nav>
             </>
         )
-    } else if (pageId === "edit") {
-        return (
-            <>
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="/">Home</a></li>
-                    <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deckName}</a></li>
-                    <li className="breadcrumb-item active" aria-current="page">Edit</li>               
-                </ol>
-            </nav>
-            </>
-        )
-    } else if (pageId === "AddCard") {
-        return (
-            <>
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="/">Home</a></li>
-                    <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>{deckName}</a></li>
-                    <li className="breadcrumb-item active" aria-current="page">Add Card</li>               
-                </ol>
-            </nav>
-            </>
-        )
-    }
+    } 
 }
 
 export default Breadcrumb

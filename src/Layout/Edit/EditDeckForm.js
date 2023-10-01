@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import { updateDeck } from "../../utils/api";
 
-function EditForm( { deckId, deckName, deckDescription } ) {
+function EditDeckForm( { deckId, deckName, deckDescription } ) {
     const [name, setName] = useState(deckName)
     const [description, setDescription] = useState(deckDescription)
     const history = useHistory()
@@ -72,4 +72,4 @@ function EditForm( { deckId, deckName, deckDescription } ) {
     )
 }
 
-export default EditForm
+export default EditDeckForm

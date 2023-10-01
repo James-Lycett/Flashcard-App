@@ -27,7 +27,7 @@ function Study() {
     } else {
         return (
             <>
-            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"study"}/>
+            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Study"}/>
             <h2>{`${deck.name}: Study`}</h2>
             <CardView deck={deck} deckId={deckId}/>
             </>

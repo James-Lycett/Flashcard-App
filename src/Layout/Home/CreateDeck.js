@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom"
 import { createDeck } from "../../utils/api";
+import Breadcrumb from "../Breadcrumb";
 
 function CreateDeck() {
     const history = useHistory()
@@ -34,6 +35,7 @@ function CreateDeck() {
     
     return (
         <>
+        <Breadcrumb pageId="Create Deck" />
         <form name="create" onSubmit={handleSubmit}>
                 <legend>Create Deck</legend>
                 <div>

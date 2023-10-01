@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { deleteCard } from "../../utils/api";
 
 function DeckPageCardView( { card, key } ) {
+    const params = useParams()
+    const deckId = params.deckId
 
     function deleteCardButtonHandler() {
         async function cardDelete() {
@@ -26,7 +28,7 @@ function DeckPageCardView( { card, key } ) {
                 <div className="card-body">
                 <p className="card-text">{card.front}</p>
                 <p className="card-text">{card.back}</p>
-                <Link to={`/decks/${card.id}/edit`}><button type="button">Edit</button></Link>
+                <Link to={`/decks/${deckId}/cards/${card.id}/edit`}><button type="button">Edit</button></Link>
                 <button onClick={deleteCardButtonHandler}>Delete</button>
                 </div>
             </div>

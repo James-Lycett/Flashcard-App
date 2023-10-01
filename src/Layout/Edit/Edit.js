@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { readDeck } from "../../utils/api";
 import Breadcrumb from "../Breadcrumb";
-import EditForm from "./EditForm";
+import EditDeckForm from "./EditDeckForm";
 
 function Edit() {
     const params = useParams()
@@ -29,8 +29,8 @@ function Edit() {
     } else {
         return (
             <>
-            <Breadcrumb deckId={deckId} deckName={deck.name} pageId={"edit"}/>
-            <EditForm deckId={deckId} deckName={deck.name} deckDescription={deck.description}/>
+            <Breadcrumb deckId={deckId} deckName={deck.name} pageId={"Edit"}/>
+            <EditDeckForm deckId={deckId} deckName={deck.name} deckDescription={deck.description}/>
             </>
         )
     }

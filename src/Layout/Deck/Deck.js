@@ -29,7 +29,7 @@ function Deck() {
     } else {
         return (
             <>
-            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"deck"}/>
+            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Deck"}/>
             <DeckInfoDisplay deck={deck} deckId={deckId}/> 
             <CardList cards={deck.cards}/>                 
             </>
