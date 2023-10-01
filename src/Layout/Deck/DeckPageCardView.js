@@ -1,10 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom"
+import { deleteCard } from "../../utils/api";
 
 function DeckPageCardView( { card, key } ) {
 
     function deleteCardButtonHandler() {
-        console.log("delete card btn pressed")
+        async function cardDelete() {
+            try {
+                await deleteCard(card.id)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        const confirm = window.confirm("Delete this card? You will not be able to recover it.")
+        if (confirm) {
+            cardDelete()
+            window.location.reload(false)
+        }
     }
 
     return (
