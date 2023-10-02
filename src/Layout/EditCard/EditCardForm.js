@@ -7,6 +7,7 @@ function EditCardForm( { deckId, card, cardId } ) {
     const [front, setFront] = useState(card.front)
     const [back, setBack] = useState(card.back)
     const history = useHistory()
+    const buttonName = "Save"
 
     const handleFrontChange = (event) => {
         setFront(event.target.value)
@@ -46,6 +47,7 @@ function EditCardForm( { deckId, card, cardId } ) {
         handleFrontChange={handleFrontChange} 
         handleBackChange={handleBackChange} 
         submitHandler={submitHandler} 
+        buttonName={buttonName}
         />
         </>
     )

@@ -5,6 +5,7 @@ import CardForm from "../CardForm";
 function AddCardForm( { deckId } ) {
     const [front, setFront] = useState()
     const [back, setBack] = useState()
+    const buttonName = "Submit"
 
     const handleFrontChange = (event) => {
         setFront(event.target.value)
@@ -39,6 +40,7 @@ function AddCardForm( { deckId } ) {
         handleFrontChange={handleFrontChange} 
         handleBackChange={handleBackChange} 
         submitHandler={submitHandler} 
+        buttonName={buttonName}
         />
         </>
     )

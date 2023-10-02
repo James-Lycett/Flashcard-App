@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function CardForm( { deckId, front, back, handleFrontChange, handleBackChange, submitHandler } ) {
+function CardForm( { deckId, front, back, handleFrontChange, handleBackChange, submitHandler, buttonName } ) {
 
     return (
         <>
@@ -30,7 +30,7 @@ function CardForm( { deckId, front, back, handleFrontChange, handleBackChange, s
             </div>
             <div className="row">
             <Link to={`/decks/${deckId}`}><button className="btn btn-secondary ml-3">Done</button></Link>
-            <button type="submit" className="btn btn-primary ml-2">Submit</button>
+            <button type="submit" className="btn btn-primary ml-2">{buttonName}</button>
             </div>
         </form>
         </>
