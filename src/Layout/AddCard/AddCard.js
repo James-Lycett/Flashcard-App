@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { readDeck } from "../../utils/api";
 import Breadcrumb from "../Breadcrumb";
-import CardForm from "./CardForm";
+import AddCardForm from "./AddCardForm";
 
 function AddCard() {
     const params = useParams()
@@ -31,7 +31,7 @@ function AddCard() {
             <div className="col-10 offset-1">
                 <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Add Card"} />
                 <h2>{`${deck.name}: Add Card`}</h2>
-                <CardForm deckId={deckId} />
+                <AddCardForm deckId={deckId} />
             </div>
             </>
         )

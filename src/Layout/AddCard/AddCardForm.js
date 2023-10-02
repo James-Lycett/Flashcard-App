@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom"
-import { updateCard } from "../../utils/api";
+import { createCard } from "../../utils/api";
 import CardForm from "../CardForm";
 
-function EditCardForm( { deckId, card, cardId } ) {
-    const [front, setFront] = useState(card.front)
-    const [back, setBack] = useState(card.back)
-    const history = useHistory()
+function AddCardForm( { deckId } ) {
+    const [front, setFront] = useState()
+    const [back, setBack] = useState()
 
     const handleFrontChange = (event) => {
         setFront(event.target.value)
@@ -18,25 +16,20 @@ function EditCardForm( { deckId, card, cardId } ) {
  
     const submitHandler = (event) => {
         event.preventDefault()
-        const deckIdnumber = parseInt(deckId)
         const newCard = {
-            id: cardId,
-            deckId: deckIdnumber,
             front: front,
             back: back
         }
-        async function cardUpdate() {
+        async function cardCreate() {
             try {
-                updateCard(newCard)
+                await createCard(deckId, newCard)
             } catch (error) {
                 console.log(error)
             }
-        }  
-        cardUpdate()
-        history.push(`/decks/${deckId}`)
+        }
+        cardCreate()
+        window.location.reload(false)
     }
-
-
     return (
         <>
         <CardForm 
@@ -51,4 +44,4 @@ function EditCardForm( { deckId, card, cardId } ) {
     )
 }
 
-export default EditCardForm
+export default AddCardForm
