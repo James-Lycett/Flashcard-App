@@ -33,7 +33,7 @@ function EditCardForm( { deckId, card, cardId } ) {
             }
         }  
         cardUpdate()
-        history.push(`/decks/${deckId}`)
+        history.go(-1)
     }
 
 
