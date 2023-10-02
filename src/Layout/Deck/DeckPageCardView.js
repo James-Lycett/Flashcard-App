@@ -23,12 +23,20 @@ function DeckPageCardView( { card } ) {
 
     return (
         <>        
-            <div className="card" style={{width: "18rem"}}>
+            <div className="card col-10 w-100" style={{width: "18rem"}}>
                 <div className="card-body">
-                <p className="card-text">{card.front}</p>
-                <p className="card-text">{card.back}</p>
-                <Link to={`/decks/${deckId}/cards/${card.id}/edit`}><button type="button">Edit</button></Link>
-                <button onClick={deleteCardButtonHandler}>Delete</button>
+                <div className="row mb-3">
+                    <div className="col-6">
+                        <p className="card-text">{card.front}</p>
+                    </div>
+                    <div className="col-6">
+                        <p className="card-text">{card.back}</p>
+                    </div>
+                </div>
+                <div className="row">
+                <Link to={`/decks/${deckId}/cards/${card.id}/edit`} className="card-link"><button type="button" className="btn btn-secondary">Edit</button></Link>
+                <button type="button" className="btn btn-danger card-link" onClick={deleteCardButtonHandler}>Delete</button>
+                </div>
                 </div>
             </div>        
         </>

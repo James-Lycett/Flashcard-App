@@ -40,9 +40,11 @@ function EditCard() {
     } else {
         return (
             <>
-            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Edit Card"} />
-            <h2>Edit Card</h2>
-            <EditCardForm deckId={deckId} deck={deck} card={card} cardId={cardId}/>
+            <div className="col-10 offset-1">
+                <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Edit Card"} />
+                <h2>Edit Card</h2>
+                <EditCardForm deckId={deckId} deck={deck} card={card} cardId={cardId}/>
+            </div>
             </>
         )
     }

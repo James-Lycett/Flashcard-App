@@ -18,12 +18,16 @@ function DeckInfoDisplay( { deck, deckId } ) {
     
     return (
         <>
-        <h2>{deck.name}</h2>
-        <p>{deck.description}</p>
-        <Link to={`/decks/${deckId}/edit`}><button type="button">Edit</button></Link>
-        <Link to={`/decks/${deckId}/study`}><button type="button">Study</button></Link>
-        <Link to={`/decks/${deckId}/cards/new`}><button type="button">+ Add Cards</button></Link>
-        <button onClick={deleteDeckButtonHandler}>Delete</button>
+        <div className="mb-4">
+            <h2>{deck.name}</h2>
+            <p>{deck.description}</p>
+            <div className="row">
+                <Link to={`/decks/${deckId}/edit`}><button type="button" className="btn btn-secondary ml-2">Edit</button></Link>
+                <Link to={`/decks/${deckId}/study`}><button type="button" className="btn btn-primary ml-2">Study</button></Link>
+                <Link to={`/decks/${deckId}/cards/new`}><button type="button" className="btn btn-primary ml-2">+ Add Cards</button></Link>
+                <button type="button" className="btn btn-danger ml-5" onClick={deleteDeckButtonHandler}>Delete</button>
+            </div>
+        </div>
         </>        
     )
 }

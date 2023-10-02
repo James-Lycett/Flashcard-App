@@ -27,9 +27,11 @@ function Study() {
     } else {
         return (
             <>
+            <div className="col-10 offset-1">
             <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Study"}/>
             <h2>{`${deck.name}: Study`}</h2>
             <CardView deck={deck} deckId={deckId}/>
+            </div>
             </>
         )
     }

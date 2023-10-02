@@ -29,9 +29,11 @@ function Deck() {
     } else {
         return (
             <>
+            <div className="col-10 offset-1">
             <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Deck"}/>
             <DeckInfoDisplay deck={deck} deckId={deckId}/> 
             <CardList cards={deck.cards}/>                 
+            </div>
             </>
         )
     }

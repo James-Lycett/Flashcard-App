@@ -45,12 +45,12 @@ function CardView( { deck, deckId } ) {
     if (deckLength >= 3) {
         return (
             <>
-            <div className="card" style={{width: "18rem"}}>
+            <div className="card col-10 w-100" style={{width: "18rem"}}>
                 <div className="card-body">
                 <h5 className="card-title">{`Card ${cardNumber + 1} of ${deckLengthStr}`}</h5>
                 <p className="card-text">{front ? card.front : card.back}</p>
-                <a className="card-link"><button onClick={flipButtonHandler}>Flip</button></a>
-                {front === false ? <a className="card-link"><button onClick={nextButtonHandler}>Next</button></a> : null}
+                <a className="card-link"><button type="button" className="btn btn-secondary" onClick={flipButtonHandler}>Flip</button></a>
+                {front === false ? <a className="card-link"><button type="button" className="btn btn-primary" onClick={nextButtonHandler}>Next</button></a> : null}
                 </div>
             </div>
             </>
@@ -58,11 +58,11 @@ function CardView( { deck, deckId } ) {
     } else {
         return (
             <>
-            <div className="card" style={{width: "18rem"}}>
+            <div className="card col-10 w-100" style={{width: "18rem"}}>
                 <div className="card-body">
                 <h5 className="card-title">Not Enough Cards</h5>
                 <p className="card-text">{`You need at least 3 cards to study. There are ${deckLengthStr} cards in this deck.`}</p>
-                <Link to={`/decks/${deckId}/cards/new`}><button type="button">+ Add Cards</button></Link>
+                <Link to={`/decks/${deckId}/cards/new`}><button type="button" className="btn btn-primary">+ Add Cards</button></Link>
                 </div>
             </div>
             </>

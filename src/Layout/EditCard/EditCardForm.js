@@ -61,8 +61,10 @@ function EditCardForm( { deckId, card, cardId } ) {
                     required={true}                    
                 />
             </div>
-            <Link to={`/decks/${deckId}`}><button>Done</button></Link>
-            <button type="submit">Submit</button>
+            <div className="row">
+            <Link to={`/decks/${deckId}`}><button className="btn btn-secondary ml-3">Done</button></Link>
+            <button type="submit" className="btn btn-primary ml-2">Submit</button>
+            </div>
         </form>
         </>
     )

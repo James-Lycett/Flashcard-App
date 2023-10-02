@@ -36,32 +36,34 @@ function CreateDeck() {
     return (
         <>
         <Breadcrumb pageId="Create Deck" />
-        <form name="create" onSubmit={handleSubmit}>
+        <form name="create" onSubmit={handleSubmit} className="mb-3">
                 <legend>Create Deck</legend>
-                <div>
-                    <label htmlFor="name" >Name:</label>
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Name:</label>
                     <input 
                         type="text"
                         id="name"
                         name="name"
+                        className="form-control"
                         onChange={handleNameChange}
                         placeholder="Deck Name"
                         required={true}
                     />
                 </div>
-                <div>
-                    <label htmlFor="description">Description:</label>
+                <div className="mb-3">
+                    <label htmlFor="description" className="form-label">Description:</label>
                         <textarea
                         id="description" 
                         name="description"
+                        className="form-control"
                         onChange={handleDescriptionChange}
                         placeholder="Brief description of the deck"
                         required={true}
                         />
                 </div>
-                <div>
-                    <Link to="/"><button>Cancel</button></Link>
-                    <button type="submit">Submit</button>                    
+                <div className="row">
+                    <Link to="/"><button type="button" className="btn btn-secondary ml-3">Cancel</button></Link>
+                    <button type="submit" className="btn btn-primary ml-2">Submit</button>                    
                 </div>
         </form>
         </>

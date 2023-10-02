@@ -28,9 +28,11 @@ function AddCard() {
     } else {
         return (
             <>
-            <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Add Card"} />
-            <h2>{`${deck.name}: Add Card`}</h2>
-            <CardForm deckId={deckId} />
+            <div className="col-10 offset-1">
+                <Breadcrumb deckName={deck.name} deckId={deckId} pageId={"Add Card"} />
+                <h2>{`${deck.name}: Add Card`}</h2>
+                <CardForm deckId={deckId} />
+            </div>
             </>
         )
     }

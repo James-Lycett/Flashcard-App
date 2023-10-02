@@ -55,8 +55,10 @@ function CardForm( { deckId } ) {
                     placeholder="Back side of card"
                 />
             </div>
-            <Link to={`/decks/${deckId}`}><button>Done</button></Link>
-            <button type="submit">Save</button>
+            <div className="row">
+            <Link to={`/decks/${deckId}`}><button type="button" className="btn btn-secondary ml-3">Done</button></Link>
+            <button type="submit" className="btn btn-primary ml-2">Save</button>
+            </div>
         </form>
         </>
     )

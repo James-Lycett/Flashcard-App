@@ -29,8 +29,10 @@ function Edit() {
     } else {
         return (
             <>
-            <Breadcrumb deckId={deckId} deckName={deck.name} pageId={"Edit"}/>
-            <EditDeckForm deckId={deckId} deckName={deck.name} deckDescription={deck.description}/>
+            <div className="col-10 offset-1">
+                <Breadcrumb deckId={deckId} deckName={deck.name} pageId={"Edit"}/>
+                <EditDeckForm deckId={deckId} deckName={deck.name} deckDescription={deck.description}/>
+            </div>
             </>
         )
     }

@@ -64,8 +64,10 @@ function EditDeckForm( { deckId, deckName, deckDescription } ) {
                             rows={5}               
                         />
                     </div>
-                    <Link to={`/decks/${deckId}`}><button>Cancel</button></Link>
-                    <button type="submit">Submit</button>
+                    <div className="row">
+                    <Link to={`/decks/${deckId}`}><button type="button" className="btn btn-secondary ml-3">Cancel</button></Link>
+                    <button type="submit" className="btn btn-primary ml-2">Submit</button>
+                    </div>
                 </form>
         </div>
         </>
