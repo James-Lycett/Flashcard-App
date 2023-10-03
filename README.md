@@ -2,8 +2,7 @@
 Flashcard App is an online tool to help students easily create and manage decks of flashcards to aid their studies.
 
 # Link 
-/* currently not hosted */
-https://james-lycett.github.io/Flashcard-App/
+https://flashcards-weld.vercel.app/
 
 ## Features
 • An application that allows users to create, edit, and delete decks and cards within them.
