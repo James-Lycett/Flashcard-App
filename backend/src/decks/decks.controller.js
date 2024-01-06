@@ -87,6 +87,40 @@ async function create(req, res, next) {
     res.status(201).json({ data })
 }
 
+// Validates that a deck with the given deckId exists
+async function deckExists(req, res, next) {
+    const { deckId } = req.params
+    const data = await service.read(deckId)
+  
+    if (!data) {
+      return next({
+        status: 404,
+        message: `Deck with deck_id "${deckId}" does not exist`
+      })
+    } else {
+      res.locals.deck = data
+      next()
+    }
+}
+
+// Returns the deck with the matching deckId
+function read(req, res, next) {
+    const data = res.locals.deck
+  
+    res.json({ data })
+  }
+
+
+// Updates an existing deck
+async function update(req, res, next) {
+    const { deck_id } = res.locals.deck
+    const updatedDeck = req.body.data
+
+    const data = await service.update(updatedDeck, deck_id)
+
+    res.json({ data })
+}
+
 
 module.exports = {
     list: [asyncErrorBoundary(list)],
@@ -97,4 +131,16 @@ module.exports = {
         validateStringProperties,
         asyncErrorBoundary(create)
     ],
+    read: [
+        asyncErrorBoundary(deckExists),
+        read
+    ],
+    update: [
+        asyncErrorBoundary(deckExists),
+        bodyHasData,
+        bodyHasRequiredProperties,
+        validatePropertiesAreNotEmpty,
+        validateStringProperties,
+        asyncErrorBoundary(update)
+    ]
 }
