@@ -1,5 +1,7 @@
 const knex = require("../db/connection")
 
+// Knex queries to 'flashcards' database 'decks' table
+
 function list() {
     return knex("decks")
         .select("*");

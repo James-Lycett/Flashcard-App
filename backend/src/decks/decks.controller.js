@@ -155,5 +155,8 @@ module.exports = {
     delete: [
         asyncErrorBoundary(deckExists),
         asyncErrorBoundary(destroy)
-    ]
+    ],
+    deckExists: [asyncErrorBoundary(deckExists)],
+    bodyHasData,
+    validateStringProperties,
 }
