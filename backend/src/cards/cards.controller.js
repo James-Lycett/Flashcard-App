@@ -65,6 +65,39 @@ async function create(req, res, next) {
     res.json({ data })
 }
 
+// Validates that a card with the given cardId exists
+async function cardExists(req, res, next) {
+    const { cardId } = req.params
+    const data = await service.read(cardId)
+  
+    if (!data) {
+      return next({
+        status: 404,
+        message: `Card with card_id "${cardId}" does not exist`
+      })
+    } else {
+      res.locals.card = data
+      next()
+    }
+}
+
+// Returns the card with the matching cardId
+function read(req, res, next) {
+    const data = res.locals.card
+  
+    res.json({ data })
+}
+
+// Updates an existing card
+async function update(req, res, next) {
+    const { card_id } = res.locals.card
+    const updatedCard = req.body.data
+
+    const data = await service.update(updatedCard, card_id)
+
+    res.json({ data })
+}
+
 
 module.exports = {
     list: [asyncErrorBoundary(list)],
@@ -76,4 +109,16 @@ module.exports = {
         decksController.validateStringProperties,
         asyncErrorBoundary(create)
     ],
+    read: [
+        asyncErrorBoundary(cardExists),
+        read
+    ],
+    update: [
+        asyncErrorBoundary(cardExists),
+        decksController.bodyHasData,
+        bodyHasRequiredProperties,
+        validatePropertiesAreNotEmpty,
+        decksController.validateStringProperties,
+        asyncErrorBoundary(update)
+    ]
 }

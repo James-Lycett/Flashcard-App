@@ -108,7 +108,7 @@ function read(req, res, next) {
     const data = res.locals.deck
   
     res.json({ data })
-  }
+}
 
 
 // Updates an existing deck
