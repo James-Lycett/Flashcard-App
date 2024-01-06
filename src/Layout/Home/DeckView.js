@@ -14,7 +14,7 @@ function DeckView({deck, deleteDeck }) {
     return (
         <>
         <li>
-            <div className="card col-10 w-100" style={{width: "18rem"}}>
+            <div className="card col-10 w-100" style={{ width: "18rem" }}>
                 <div className="card-body">
                     <h5 className="card-title">{deck.name}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary">{`${deckLength} cards`}</h6>

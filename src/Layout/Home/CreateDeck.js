@@ -30,7 +30,7 @@ function CreateDeck() {
             history.push(`/decks/${deckID}`)
         }
         postDeck()
-        console.log("handleSubmit just might work now")
+        history.go(-1)
     }
     
     return (
