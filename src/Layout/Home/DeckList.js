@@ -5,10 +5,10 @@ import { deleteDeck } from "../../utils/api";
 function DeckList( { decks } ) {
     return (
         <>
-        <ul style={{listStyleType: "none"}}>
+        <ul style={{ listStyleType: "none" }}>
             {decks.map((deck) => (
-                <React.Fragment key={deck.id}>
-                <DeckView deck={deck} deleteDeck={() => deleteDeck(deck.id)} />
+                <React.Fragment key={deck.deck_id}>
+                <DeckView deck={deck} deleteDeck={() => deleteDeck(deck.deck_id)} />
                 </React.Fragment>
             ))}
         </ul>

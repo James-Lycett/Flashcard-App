@@ -1,6 +1,5 @@
 const pinoHttp = require("pino-http")
-const pino = require('pino');
-const nanoid = require("nanoid")
+const { nanoid } = require("nanoid")
 
 // Read process.env logging variables before we do anything crazy
 // Defaults to "you're a developer and you want info level logs"

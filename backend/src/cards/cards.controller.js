@@ -6,8 +6,7 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary")
 
 // Returns an array of all the cards for a single deck
 async function list(req, res, next) {
-    const { deckId } = req.params
-    const data = await service.list(deckId)
+    const data = await service.list()
 
     res.json({ data })
 }

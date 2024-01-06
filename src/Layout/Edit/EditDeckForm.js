@@ -15,23 +15,25 @@ function EditDeckForm( { deckId, deckName, deckDescription } ) {
         setDescription(event.target.value)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
+        const abortController = new AbortController()
         const newDeck = {
-            id: deckId,
             name: name,
             description: description
         }
         async function deckUpdate() {
             try {
-                updateDeck(newDeck)
+                 await updateDeck(newDeck, deckId, abortController.signal)
             } catch (error) {
                 console.log(error)
+            } finally {
+                abortController.abort()
             }
         }
         deckUpdate()
         history.push(`/decks/${deckId}`)
-        window.location.reload(false)
+        //window.location.reload()
     }
 
     return (

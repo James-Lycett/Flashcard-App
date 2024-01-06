@@ -1,18 +1,28 @@
 const service = require("./decks.service")
+const cardsService = require("../cards/cards.service")
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary")
 
 // CRUDL request functions for /decks route
 
 // Lists all decks
 async function list(req, res, next) {
-    const data = await service.list()
+    const decks = await service.list()
+    const cards = await cardsService.list()
+
+    decks.forEach((deck) => {
+      const thisDecksCards = cards.filter((card) => deck.deck_id === card.deck_id)
+      deck.cards = thisDecksCards
+    })
+
+    const data = decks
 
     res.json({ data })
 }
 
 // Validates request body has data
 function bodyHasData(req, res, next) {
-    const data = req.body.data
+    const data = req.body
+    console.log(`recieved data: ${data}`)
   
     if (!data) {
       return next({
@@ -28,6 +38,7 @@ function bodyHasData(req, res, next) {
 function bodyHasRequiredProperties(req, res, next) {
     const data = req.body.data
     const bodyProperties = Object.keys(data)
+    console.log(bodyProperties)
     let validBodyProperties = [
       "name",
       "description",
@@ -104,8 +115,13 @@ async function deckExists(req, res, next) {
 }
 
 // Returns the deck with the matching deckId
-function read(req, res, next) {
-    const data = res.locals.deck
+async function read(req, res, next) {
+    const deck = res.locals.deck
+    const cards = await cardsService.list()
+    const thisDecksCards = cards.filter((card) => deck.deck_id === card.deck_id)
+
+    deck.cards = thisDecksCards
+    const data = deck
   
     res.json({ data })
 }
@@ -115,6 +131,8 @@ function read(req, res, next) {
 async function update(req, res, next) {
     const { deck_id } = res.locals.deck
     const updatedDeck = req.body.data
+
+    console.log(updatedDeck)
 
     const data = await service.update(updatedDeck, deck_id)
 

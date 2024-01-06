@@ -6,7 +6,6 @@ const knex = require("../db/connection")
 function list(deckId) {
     return knex("cards")
         .select("*")
-        .where({ deck_id: deckId});
 }
 
 // Creates a new card and returns the created database row

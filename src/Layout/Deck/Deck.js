@@ -15,7 +15,7 @@ function Deck() {
         async function loadDeck() {
             try {
                 const APIresponse = await readDeck(deckId)
-                setDeck(APIresponse)
+                setDeck(APIresponse.data)
             } catch (error) {
                 // handle any API errors here
                 console.log(error)

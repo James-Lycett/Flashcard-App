@@ -1,4 +1,5 @@
-if (process.env.USER || process.env.USERNAME) require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "..", ".env") })
 const express = require("express");
 const logger = require("./config/logger")
 const cors = require("cors")

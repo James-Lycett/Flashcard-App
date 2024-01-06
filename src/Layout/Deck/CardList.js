@@ -4,9 +4,9 @@ import DeckPageCardView from "./DeckPageCardView";
 function CardList( { cards } ) {
     return (
         <>
-        <ul style={{listStyleType: "none"}}>
+        <ul style={{ listStyleType: "none" }}>
             {cards.map((card) => (
-                <React.Fragment key={card.id}>
+                <React.Fragment key={card.card_id}>
                 <li>                
                     <DeckPageCardView card={card}/> 
                 </li>

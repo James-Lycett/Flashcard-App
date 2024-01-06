@@ -9,6 +9,8 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
  */
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
+headers.append("Accept", "application/json");
+
 
 /**
  * Removes the `cards` property from the deck so it is not accidentally saved with the deck.
@@ -43,7 +45,9 @@ function stripCards(deck) {
 
 async function fetchJson(url, options, onCancel) {
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url, {
+      ...options,
+    });
 
     if (response.status < 200 || response.status > 399) {
       throw new Error(`${response.status} - ${response.statusText}`);
@@ -70,8 +74,8 @@ async function fetchJson(url, options, onCancel) {
  *  a promise that resolves to a possibly empty array of decks saved in the database.
  */
 export async function listDecks(signal) {
-  const url = `${API_BASE_URL}/decks?_embed=cards`;
-  return await fetchJson(url, { signal }, []);
+  const url = `${API_BASE_URL}/decks`;
+  return await fetchJson(url, { headers, signal }, []);
 }
 
 /**
@@ -105,7 +109,7 @@ export async function createDeck(deck, signal) {
  *  a promise that resolves to the saved deck.
  */
 export async function readDeck(deckId, signal) {
-  const url = `${API_BASE_URL}/decks/${deckId}?_embed=cards`;
+  const url = `${API_BASE_URL}/decks/${deckId}`;
   return await fetchJson(url, { signal }, {});
 }
 
@@ -118,15 +122,17 @@ export async function readDeck(deckId, signal) {
  * @returns {Promise<Error|*>}
  *  a promise that resolves to the updated deck.
  */
-export async function updateDeck(updatedDeck, signal) {
-  const url = `${API_BASE_URL}/decks/${updatedDeck.id}?_embed=cards`;
+export async function updateDeck(updatedDeck, deckId, signal) {
+  const url = `${API_BASE_URL}/decks/${deckId}`;
+  const strippedDeck = { data: stripCards(updatedDeck) }
+  const data = JSON.stringify(strippedDeck)
   const options = {
     method: "PUT",
     headers,
-    body: JSON.stringify(stripCards(updatedDeck)),
+    body: data,
     signal,
   };
-  return await fetchJson(url, options, updatedDeck);
+  return await fetchJson(url, options, {});
 }
 
 /**

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function DeckView({deck, deleteDeck }) {
+function DeckView({ deck, deleteDeck }) {
     const deckLength = '' + deck.cards.length
 
     function deleteButtonHandler() {
@@ -20,8 +20,8 @@ function DeckView({deck, deleteDeck }) {
                     <h6 className="card-subtitle mb-2 text-body-secondary">{`${deckLength} cards`}</h6>
                     <p className="card-text">{deck.description}</p>
                     <div className="d-flex">
-                        <Link to={`/decks/${deck.id}`} className="card-link"><button type="button" className="btn btn-secondary">View</button></Link>
-                        <Link to={`/decks/${deck.id}/study`} className="card-link"><button type="button" className="btn btn-primary">Study</button></Link>
+                        <Link to={`/decks/${deck.deck_id}`} className="card-link"><button type="button" className="btn btn-secondary">View</button></Link>
+                        <Link to={`/decks/${deck.deck_id}/study`} className="card-link"><button type="button" className="btn btn-primary">Study</button></Link>
                         <button type="button" className="btn btn-danger card-link " onClick={deleteButtonHandler}>Delete</button>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ function DeckPageCardView( { card } ) {
     function deleteCardButtonHandler() {
         async function cardDelete() {
             try {
-                await deleteCard(card.id)
+                await deleteCard(card.card_id)
             } catch (error) {
                 console.log(error)
             }
@@ -34,7 +34,7 @@ function DeckPageCardView( { card } ) {
                     </div>
                 </div>
                 <div className="row">
-                <Link to={`/decks/${deckId}/cards/${card.id}/edit`} className="card-link"><button type="button" className="btn btn-secondary">Edit</button></Link>
+                <Link to={`/decks/${deckId}/cards/${card.card_id}/edit`} className="card-link"><button type="button" className="btn btn-secondary">Edit</button></Link>
                 <button type="button" className="btn btn-danger card-link" onClick={deleteCardButtonHandler}>Delete</button>
                 </div>
                 </div>

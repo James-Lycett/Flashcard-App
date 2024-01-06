@@ -11,15 +11,16 @@ function Home() {
     useEffect(() => {
         async function loadDecks() {
             const APIresponse = await listDecks()
-            setDecks(APIresponse)
+            setDecks(APIresponse.data)
         }
         loadDecks()
     }, [])
+
     return (
     <>
     <div className="col-10 offset-1">
     <Link to="/decks/new"><button type="button" className="btn btn-secondary offset-1 mb-3">+ Create Deck</button></Link>    
-    <DeckList decks={decks}/>
+    {decks.length > 0 ? <DeckList decks={decks}/> : <h3>No decks</h3>}
     </div>
     </>
     )
