@@ -5,6 +5,7 @@ const methodNotAllowed = require("../errors/methodNotAllowed")
 // Request route handling for /movies route
 router.route("/")
     .get(controller.list)
+    .post(controller.create)
     .all(methodNotAllowed)
 
 
