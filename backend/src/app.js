@@ -1,8 +1,10 @@
 if (process.env.USER || process.env.USERNAME) require("dotenv").config();
-const cors = require("cors")
-const logger = require("./config/logger")
 const express = require("express");
+const logger = require("./config/logger")
+const cors = require("cors")
 const app = express();
+const decksRouter = require("./decks/decks.router")
+const cardsRouter = require("./cards/cards.router")
 const notFound = require("./errors/notFound")
 const errorHandler = require("./errors/errorHandler")
 
@@ -16,7 +18,8 @@ app.use(cors())
 app.use(express.json())
 
 // Routes
-
+app.use("/decks", decksRouter)
+app.use("/cards", cardsRouter)
 
 // Errors
 app.use(notFound)
