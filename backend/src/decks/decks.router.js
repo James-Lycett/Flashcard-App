@@ -11,6 +11,7 @@ router.route("/")
 router.route("/:deckId")
     .get(controller.read)
     .put(controller.update)
+    .delete(controller.delete)
     .all(methodNotAllowed)
 
 

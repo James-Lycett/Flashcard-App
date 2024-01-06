@@ -16,14 +16,20 @@ function read(deckId) {
     return knex("decks")
         .select("*")
         .where({ deck_id: deckId })
-        .first()
+        .first();
 }
 
 function update(updatedDeck, deck_id) {
     return knex("decks")
         .where({ deck_id: deck_id })
         .update({ ...updatedDeck }, "*")
-        .then((createdRecords) => createdRecords[0])
+        .then((createdRecords) => createdRecords[0]);
+}
+
+function destroy(deck_id) {
+    return knex("decks")
+        .where({ deck_id: deck_id })
+        .del()
 }
 
 
@@ -31,5 +37,6 @@ module.exports = {
     list,
     create,
     read,
-    update
+    update,
+    destroy
 }

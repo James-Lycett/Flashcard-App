@@ -121,6 +121,15 @@ async function update(req, res, next) {
     res.json({ data })
 }
 
+// Deletes an existing deck
+async function destroy(req, res, next) {
+    const { deck_id } = res.locals.deck
+
+    await service.destroy(deck_id)
+
+    res.sendStatus(204)
+}
+
 
 module.exports = {
     list: [asyncErrorBoundary(list)],
@@ -142,5 +151,9 @@ module.exports = {
         validatePropertiesAreNotEmpty,
         validateStringProperties,
         asyncErrorBoundary(update)
+    ],
+    delete: [
+        asyncErrorBoundary(deckExists),
+        asyncErrorBoundary(destroy)
     ]
 }
