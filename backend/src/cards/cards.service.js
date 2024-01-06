@@ -33,10 +33,18 @@ function update(updatedCard, card_id) {
         .then((createdRecords) => createdRecords[0])
 }
 
+// Deletes the card with cardId
+function destroy(card_id) {
+    return knex("cards")
+        .where({ card_id: card_id })
+        .del()
+}
+
 
 module.exports = {
     list,
     create,
     read,
-    update
+    update,
+    destroy
 }

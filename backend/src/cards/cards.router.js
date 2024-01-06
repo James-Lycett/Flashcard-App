@@ -12,6 +12,7 @@ router.route("/deck/:deckId")
 router.route("/:cardId")
     .get(controller.read)
     .put(controller.update)
+    .delete(controller.delete)
     .all(methodNotAllowed)
 
 module.exports = router
