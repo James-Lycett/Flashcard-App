@@ -106,7 +106,6 @@ async function destroy(req, res, next) {
     res.sendStatus(204)
 }
 
-
 module.exports = {
     list: [asyncErrorBoundary(list)],
     create: [

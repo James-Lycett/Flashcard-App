@@ -24,10 +24,12 @@ function CreateDeck() {
         }
         async function postDeck() {
             const postedDeck = await createDeck(newDeck)
-            const deckID = postedDeck.id            
+            const deckID = postedDeck.data.deck_id
+            return () => {
             setName("")
             setDescription("")
             history.push(`/decks/${deckID}`)
+            }
         }
         postDeck()
         history.go(-1)

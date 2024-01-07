@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { createCard } from "../../utils/api";
 import CardForm from "../CardForm";
 
@@ -6,6 +7,7 @@ function AddCardForm( { deckId } ) {
     const [front, setFront] = useState()
     const [back, setBack] = useState()
     const buttonName = "Submit"
+    const history = useHistory()
 
     const handleFrontChange = (event) => {
         setFront(event.target.value)
@@ -29,7 +31,8 @@ function AddCardForm( { deckId } ) {
             }
         }
         cardCreate()
-        window.location.reload(false)
+        history.push(`/decks/${deckId}`)
+        window.location.reload()
     }
     return (
         <>

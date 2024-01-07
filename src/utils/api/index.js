@@ -90,10 +90,12 @@ export async function listDecks(signal) {
  */
 export async function createDeck(deck, signal) {
   const url = `${API_BASE_URL}/decks`;
+  const strippedDeck = { data: stripCards(deck) }
+  const data = JSON.stringify(strippedDeck)
   const options = {
     method: "POST",
     headers,
-    body: JSON.stringify(stripCards(deck)),
+    body: data,
     signal,
   };
   return await fetchJson(url, options, {});
@@ -163,17 +165,15 @@ export async function deleteDeck(deckId, signal) {
  *  a promise that resolves to the new card, which will have an `id` property.
  */
 export async function createCard(deckId, card, signal) {
-  // There is a bug in json-server, if you post to /decks/:deckId/cards the associated deckId is a string
-  // and the card is not related to the deck because the data types of the ID's are different.
-  const url = `${API_BASE_URL}/cards`;
-  card.deckId = Number(deckId);
+  const url = `${API_BASE_URL}/cards/deck/${deckId}`;
+  const data = JSON.stringify({ data: card })
   const options = {
     method: "POST",
     headers,
-    body: JSON.stringify(card),
+    body: data,
     signal,
   };
-  return await fetchJson(url, options, card);
+  return await fetchJson(url, options);
 }
 
 /**
@@ -200,7 +200,7 @@ export async function readCard(cardId, signal) {
  *  a promise that resolves to the updated card.
  */
 export async function updateCard(updatedCard, signal) {
-  const url = `${API_BASE_URL}/cards/${updatedCard.id}`;
+  const url = `${API_BASE_URL}/cards/${updatedCard.card_id}`;
   const options = {
     method: "PUT",
     headers,

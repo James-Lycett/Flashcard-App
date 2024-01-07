@@ -8,8 +8,8 @@ import CardList from "./CardList";
 function Deck() {
     const params = useParams()
     const deckId = params.deckId
-    const [deck, setDeck] = useState(null)   
-    
+    const [deck, setDeck] = useState(null)
+
 
     useEffect(() => {
         async function loadDeck() {

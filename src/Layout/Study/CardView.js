@@ -13,12 +13,12 @@ function CardView( { deck, deckId } ) {
     useEffect(() => {
         if (cardNumber !== deckLength) {
         async function loadCard() {
-            const response = await readCard(deck.cards[cardNumber].id)
-            setCard(response)
+            const response = await readCard(deck.cards[cardNumber].card_id)
+            setCard(response.data)
         }
         loadCard()
         }
-    }, [cardNumber])
+    }, [cardNumber, deck.cards, deckLength])
 
     const flipButtonHandler = () => {
         if (front === true) {
@@ -45,12 +45,12 @@ function CardView( { deck, deckId } ) {
     if (deckLength >= 3) {
         return (
             <>
-            <div className="card col-10 w-100" style={{width: "18rem"}}>
+            <div className="card col-10 w-100" style={{ width: "18rem" }}>
                 <div className="card-body">
                 <h5 className="card-title">{`Card ${cardNumber + 1} of ${deckLengthStr}`}</h5>
                 <p className="card-text">{front ? card.front : card.back}</p>
-                <a className="card-link"><button type="button" className="btn btn-secondary" onClick={flipButtonHandler}>Flip</button></a>
-                {front === false ? <a className="card-link"><button type="button" className="btn btn-primary" onClick={nextButtonHandler}>Next</button></a> : null}
+                <button type="button" className="btn btn-secondary card-link" onClick={flipButtonHandler}>Flip</button>
+                {front === false ? <button type="button" className="btn btn-primary card-link" onClick={nextButtonHandler}>Next</button> : null}
                 </div>
             </div>
             </>
@@ -58,7 +58,7 @@ function CardView( { deck, deckId } ) {
     } else {
         return (
             <>
-            <div className="card col-10 w-100" style={{width: "18rem"}}>
+            <div className="card col-10 w-100" style={{ width: "18rem" }}>
                 <div className="card-body">
                 <h5 className="card-title">Not Enough Cards</h5>
                 <p className="card-text">{`You need at least 3 cards to study. There are ${deckLengthStr} cards in this deck.`}</p>
