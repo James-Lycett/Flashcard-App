@@ -14,6 +14,10 @@ exports.seed = async function(knex) {
     {
       name: "React Router",
       description: "React Router is a collection of navigational components that compose declaratively with your application.",
-    }
+    },
+    {
+      name: "Express",
+      description: "Express is a routing and middleware web framework that has minimal functionality of its own: An Express application is essentially a series of middleware function calls."
+    },
   ]);
 };

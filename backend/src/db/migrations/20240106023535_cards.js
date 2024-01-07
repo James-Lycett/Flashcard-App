@@ -10,6 +10,7 @@ exports.up = function(knex) {
         .integer("deck_id")
         .references("deck_id")
         .inTable("decks")
+        .onUpdate("cascade")
         .onDelete("cascade");
     table.string("front");
     table.string("back");
