@@ -33,7 +33,7 @@ function DeckPageCardView( { card } ) {
                         <p className="card-text">{card.back}</p>
                     </div>
                 </div>
-                <div className="row mt-5">
+                <div className="mt-5">
                     <Link to={`/decks/${deckId}/cards/${card.card_id}/edit`} className="card-link"><button type="button" className="btn btn-secondary">Edit</button></Link>
                     <button type="button" className="btn btn-danger card-link" onClick={deleteCardButtonHandler}>Delete</button>
                 </div>
