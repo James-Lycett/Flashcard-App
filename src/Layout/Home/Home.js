@@ -18,7 +18,7 @@ function Home() {
 
     return (
     <>
-    <div className="col flex-column offset-lg-1 d-flex justify-content-center">
+    <div className="col flex-column d-flex justify-content-center">
         <div>
             <Link to="/decks/new"><button type="button" className="btn btn-secondary offset-lg-1 mb-5">+ Create Deck</button></Link>
         </div>
