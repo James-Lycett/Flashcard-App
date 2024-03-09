@@ -45,7 +45,7 @@ function CardView( { deck, deckId } ) {
     if (deckLength >= 3) {
         return (
             <>
-            <div className="card col-10 w-100" style={{ width: "18rem" }}>
+            <div className="card col-lg-10 w-100 mt-5" style={{ width: "18rem" }}>
                 <div className="card-body">
                 <h5 className="card-title">{`Card ${cardNumber + 1} of ${deckLengthStr}`}</h5>
                 <p className="card-text">{front ? card.front : card.back}</p>
